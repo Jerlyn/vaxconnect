@@ -1,0 +1,379 @@
+/* Base styles and variables */
+:root {
+    --primary-color: #0072b5;  /* Vaccine blue */
+    --secondary-color: #64a70b; /* Immunity green */
+    --background-color: #f8f9fa;
+    --text-color: #333;
+    --correct-color: #4caf50;
+    --incorrect-color: #f44336;
+    --card-background: #fff;
+    --card-border: #e0e0e0;
+    --modal-overlay: rgba(0, 0, 0, 0.7);
+    --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --spacing-small: 0.5rem;
+    --spacing-medium: 1rem;
+    --spacing-large: 2rem;
+    --border-radius: 0.5rem;
+    --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+}
+
+/* High contrast theme */
+.high-contrast {
+    --primary-color: #0000ff;
+    --secondary-color: #008000;
+    --background-color: #000;
+    --text-color: #fff;
+    --card-background: #000;
+    --card-border: #fff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    padding: var(--spacing-medium);
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3 {
+    margin-bottom: var(--spacing-medium);
+    line-height: 1.2;
+}
+
+h1 {
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 2rem;
+}
+
+.tagline {
+    text-align: center;
+    margin-bottom: var(--spacing-medium);
+    font-style: italic;
+}
+
+/* Button styles */
+.button {
+    padding: var(--spacing-small) var(--spacing-medium);
+    border-radius: var(--border-radius);
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color var(--transition-speed);
+    display: inline-block;
+    text-align: center;
+}
+
+.primary-button {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.primary-button:hover:not(:disabled) {
+    background-color: #005a92;
+}
+
+.primary-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.secondary-button {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.secondary-button:hover {
+    background-color: #4d8109;
+}
+
+.share-button {
+    background-color: #f8f9fa;
+    color: var(--text-color);
+    border: 1px solid #dee2e6;
+    margin-right: var(--spacing-small);
+}
+
+.share-button:hover {
+    background-color: #e9ecef;
+}
+
+/* Game controls */
+.game-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-medium);
+    padding: var(--spacing-small);
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.timer {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Game board */
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-small);
+    margin-bottom: var(--spacing-medium);
+}
+
+@media (min-width: 768px) {
+    .game-board {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.word-card {
+    background-color: var(--card-background);
+    border: 2px solid var(--card-border);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-medium);
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.word-card:hover:not(.selected, .completed) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.word-card.selected {
+    border-color: var(--primary-color);
+    background-color: rgba(0, 114, 181, 0.1);
+}
+
+.word-card.incorrect {
+    border-color: var(--incorrect-color);
+    background-color: rgba(244, 67, 54, 0.1);
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+.word-card.completed {
+    opacity: 0.7;
+    cursor: default;
+}
+
+/* Selection area */
+.selection-area {
+    margin-bottom: var(--spacing-large);
+    padding: var(--spacing-medium);
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+#selection-info {
+    margin-bottom: var(--spacing-small);
+    text-align: center;
+}
+
+.selected-words {
+    min-height: 50px;
+    margin-bottom: var(--spacing-medium);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-small);
+}
+
+.selection-controls {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-medium);
+}
+
+/* Found categories */
+.found-categories {
+    margin-bottom: var(--spacing-large);
+}
+
+.category-container {
+    margin-bottom: var(--spacing-medium);
+    padding: var(--spacing-medium);
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.category-title {
+    margin-bottom: var(--spacing-small);
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.category-words {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-small);
+}
+
+.category-word {
+    padding: var(--spacing-small);
+    background-color: rgba(0, 114, 181, 0.1);
+    border-radius: var(--border-radius);
+}
+
+/* Modals */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--modal-overlay);
+    z-index: 100;
+    overflow-y: auto;
+    padding: var(--spacing-medium);
+}
+
+.modal.visible {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--card-background);
+    padding: var(--spacing-large);
+    border-radius: var(--border-radius);
+    max-width: 90%;
+    width: 500px;
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .modal-content {
+        padding: var(--spacing-large);
+        max-width: 600px;
+    }
+}
+
+/* Leaderboard */
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--spacing-medium);
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+    padding: var(--spacing-small);
+    text-align: left;
+    border-bottom: 1px solid var(--card-border);
+}
+
+/* Footer */
+footer {
+    margin-top: var(--spacing-large);
+    text-align: center;
+}
+
+footer nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--spacing-medium);
+    gap: var(--spacing-medium);
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.nav-button:hover {
+    text-decoration: underline;
+}
+
+.accessibility-info {
+    margin-bottom: var(--spacing-small);
+}
+
+.accessibility-info a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.accessibility-info a:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Accessibility features */
+/* Focus styles */
+*:focus {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Skip to content link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: white;
+    padding: 8px;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Animation control for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Larger text for better readability */
+.large-text {
+    font-size: 120%;
+}
+
+/* Larger touch targets for mobile */
+@media (max-width: 767px) {
+    .button, .word-card {
+        min-height: 44px;
+        padding: 12px;
+    }
+}

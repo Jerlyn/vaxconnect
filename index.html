@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VaxConnect - A vaccine-themed word connection game">
+    <title>VaxConnect</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>VaxConnect</h1>
+        <p class="tagline">Find the connections between vaccine-related terms!</p>
+    </header>
+
+    <main>
+        <!-- Game controls -->
+        <div class="game-controls">
+            <div class="timer">
+                <i class="fas fa-clock" aria-hidden="true"></i>
+                <span id="timer-display">60</span>s
+            </div>
+            <div class="hints">
+                <button id="hint-button" aria-label="Get hint">
+                    <i class="far fa-lightbulb" aria-hidden="true"></i>
+                    Hint (<span id="hints-remaining">3</span>)
+                </button>
+            </div>
+        </div>
+
+        <!-- Game board -->
+        <div class="game-board" id="game-board">
+            <!-- Words will be dynamically inserted here via JavaScript -->
+        </div>
+
+        <!-- Selection area -->
+        <div class="selection-area">
+            <p id="selection-info">Select 4 words that share a connection.</p>
+            <div id="selected-words" class="selected-words" aria-live="polite"></div>
+            <div class="selection-controls">
+                <button id="submit-btn" class="button primary-button" disabled>Submit</button>
+                <button id="shuffle-btn" class="button secondary-button">Shuffle</button>
+            </div>
+        </div>
+
+        <!-- Found categories -->
+        <div class="found-categories" id="found-categories">
+            <!-- Completed categories will be added here -->
+        </div>
+    </main>
+
+    <!-- Game end modal -->
+    <div id="game-end-modal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <h2 id="end-game-title">Game Over!</h2>
+            <p id="game-result"></p>
+            <div class="score-info">
+                <p>Time remaining: <span id="time-remaining">0</span> seconds</p>
+                <p>Hints used: <span id="hints-used">0</span>/3</p>
+            </div>
+            
+            <div class="save-score">
+                <h3>Save your score</h3>
+                <label for="player-initials">Your initials:</label>
+                <input type="text" id="player-initials" maxlength="3" placeholder="AAA" aria-label="Enter your three letter initials">
+                <button id="save-score-btn" class="button primary-button">Save Score</button>
+            </div>
+            
+            <div class="share-score">
+                <h3>Share your result</h3>
+                <div class="share-buttons">
+                    <button id="share-twitter" class="button share-button">
+                        <i class="fab fa-twitter" aria-hidden="true"></i> Twitter
+                    </button>
+                    <button id="share-facebook" class="button share-button">
+                        <i class="fab fa-facebook" aria-hidden="true"></i> Facebook
+                    </button>
+                    <button id="copy-result" class="button share-button">
+                        <i class="far fa-copy" aria-hidden="true"></i> Copy
+                    </button>
+                </div>
+            </div>
+            
+            <button id="play-again-btn" class="button primary-button">Play Again</button>
+        </div>
+    </div>
+
+    <!-- Leaderboard modal -->
+    <div id="leaderboard-modal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <h2>Leaderboard</h2>
+            <table class="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Rank</th>
+                        <th scope="col">Initials</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Hints</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-body">
+                    <!-- Leaderboard entries will be added here -->
+                </tbody>
+            </table>
+            <button id="close-leaderboard-btn" class="button secondary-button">Close</button>
+        </div>
+    </div>
+
+    <!-- Instructions modal -->
+    <div id="instructions-modal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <h2>How to Play</h2>
+            <ol>
+                <li>Find 4 words that share a connection</li>
+                <li>Select 4 words and click Submit</li>
+                <li>Continue until you find all 4 groups</li>
+                <li>You have 60 seconds and 3 hints</li>
+            </ol>
+            <button id="close-instructions-btn" class="button secondary-button">Got it!</button>
+        </div>
+    </div>
+
+    <footer>
+        <nav>
+            <button id="show-leaderboard-btn" class="nav-button">
+                <i class="fas fa-trophy" aria-hidden="true"></i> Leaderboard
+            </button>
+            <button id="show-instructions-btn" class="nav-button">
+                <i class="fas fa-question-circle" aria-hidden="true"></i> Instructions
+            </button>
+        </nav>
+        <p class="accessibility-info">
+            <a href="#" id="accessibility-settings">
+                <i class="fas fa-universal-access" aria-hidden="true"></i> Accessibility
+            </a>
+        </p>
+        <p class="copyright">Created by Jerlyn | &copy; <span id="current-year"></span></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
