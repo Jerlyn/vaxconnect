@@ -45,6 +45,46 @@ document.addEventListener('DOMContentLoaded', function() {
                 name: "Vaccine Storage Terms",
                 words: ["Cold Chain", "Refrigeration", "Vial", "Diluent"],
                 description: "Terms related to vaccine storage and handling"
+            },
+            {
+                name: "Vaccine Components",
+                words: ["Antigen", "Adjuvant", "Preservative", "Stabilizer"],
+                description: "Ingredients found in various vaccines"
+            },
+            {
+                name: "Childhood Vaccines",
+                words: ["MMR", "DTaP", "Hib", "Rotavirus"],
+                description: "Common vaccines given to children"
+            },
+            {
+                name: "Vaccine Development Phases",
+                words: ["Preclinical", "Phase I", "Phase II", "Phase III"],
+                description: "Stages of vaccine clinical testing"
+            },
+            {
+                name: "Immunity Types",
+                words: ["Herd", "Natural", "Passive", "Adaptive"],
+                description: "Different forms of immunity"
+            },
+            {
+                name: "Vaccination Equipment",
+                words: ["Syringe", "Needle", "Alcohol Swab", "Bandage"],
+                description: "Items used during vaccination"
+            },
+            {
+                name: "Vaccination Schedule Terms",
+                words: ["Booster", "Primary Series", "Catch-up", "Delayed"],
+                description: "Terms related to vaccination timing"
+            },
+            {
+                name: "Modern Vaccine Companies",
+                words: ["Pfizer", "Moderna", "Novavax", "AstraZeneca"],
+                description: "Pharmaceutical companies that produce vaccines"
+            },
+            {
+                name: "Immunization Records",
+                words: ["Card", "Registry", "Database", "Certificate"],
+                description: "Ways to document vaccinations"
             }
         ]
     };
@@ -117,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
             selectedWords: [],
             foundCategories: [],
             availableHints: 3,
-            timeRemaining: 60,
+            timeRemaining: 180,
             timerInterval: null,
             isGameActive: true,
             hintsUsed: 0
@@ -155,9 +195,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Choose random categories for the game
     function chooseGameCategories() {
-        // For now, just use the default categories
-        // In a more advanced version, you could mix in some alternate categories for variety
-        return gameData.categories;
+        // Combine all categories
+        const allCategories = [...gameData.categories, ...gameData.alternateCategories];
+        
+        // Shuffle the combined array
+        const shuffledCategories = shuffleArray(allCategories);
+        
+        // Take the first 4 categories
+        return shuffledCategories.slice(0, 4);
     }
 
     // Create and shuffle the word array

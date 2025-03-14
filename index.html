@@ -20,7 +20,7 @@
         <div class="game-controls">
             <div class="timer">
                 <i class="fas fa-clock" aria-hidden="true"></i>
-                <span id="timer-display">60</span>s
+                <span id="timer-display">180</span>s
             </div>
             <div class="hints">
                 <button id="hint-button" aria-label="Get hint">
@@ -54,16 +54,14 @@
     <!-- Game end modal -->
     <div id="game-end-modal" class="modal" aria-hidden="true">
         <div class="modal-content">
-            <h2 id="end-game-title">Game Over!</h2>
+            <h2 id="end-game-title">Game Over</h2>
             <p id="game-result"></p>
-            <div class="score-info">
-                <p>Time remaining: <span id="time-remaining">0</span> seconds</p>
-                <p>Hints used: <span id="hints-used">0</span>/3</p>
-            </div>
             
             <div class="save-score">
                 <h3>Save your score</h3>
-                <label for="player-initials">Your initials:</label>
+                <p>
+                    <label for="player-initials">Your initials:</label>
+                </p>
                 <input type="text" id="player-initials" maxlength="3" placeholder="AAA" aria-label="Enter your three letter initials">
                 <button id="save-score-btn" class="button primary-button">Save Score</button>
             </div>
@@ -84,6 +82,12 @@
             </div>
             
             <button id="play-again-btn" class="button primary-button">Play Again</button>
+            
+            <!-- Hidden but still available for use in code -->
+            <div class="score-info" style="display: none;">
+                <p>Time remaining: <span id="time-remaining">0</span> seconds</p>
+                <p>Hints used: <span id="hints-used">0</span>/3</p>
+            </div>
         </div>
     </div>
 
@@ -117,7 +121,7 @@
                 <li>Find 4 words that share a connection</li>
                 <li>Select 4 words and click Submit</li>
                 <li>Continue until you find all 4 groups</li>
-                <li>You have 60 seconds and 3 hints</li>
+                <li>You have 180 seconds and 3 hints</li>
             </ol>
             <button id="close-instructions-btn" class="button secondary-button">Got it!</button>
         </div>
