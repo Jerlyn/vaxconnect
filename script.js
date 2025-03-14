@@ -493,7 +493,7 @@ document.addEventListener('DOMContentLoaded', function() {
             shareText += `found ${foundCategories}/4 categories. I used ${hintsUsed}/3 hints.`;
         }
         
-        shareText += ` Play VaxConnect: [YourGameURL]`;
+        shareText += ` Play VaxConnect: [https://jerlyn.github.io/vaxconnect/]`;
         
         return shareText;
     }
